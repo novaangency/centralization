@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 
@@ -17,6 +18,7 @@ import { authClient } from "@/lib/auth-client";
 export function EthereumSignIn() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSignIn = async () => {
     try {
@@ -69,7 +71,8 @@ export function EthereumSignIn() {
       }
 
       console.log("Successfully signed in:", data?.user);
-      // Redirect or update UI
+      // Redirect to dashboard
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Failed to sign in");
       console.error("Sign in error:", err);
