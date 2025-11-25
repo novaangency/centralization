@@ -48,11 +48,17 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      // D'abord créer le compte
+      // Étape 1: Créer le compte avec un mot de passe temporaire
+      const tempPassword = crypto.randomUUID();
       const signUpResult = await authClient.signUp.email({
         email,
-        password: crypto.randomUUID(), // Mot de passe aléatoire car non utilisé
+        password: tempPassword,
         name,
+        fetchOptions: {
+          onError(context) {
+            console.error("Signup error:", context.error);
+          },
+        },
       });
 
       if (signUpResult.error) {
@@ -62,25 +68,25 @@ export default function RegisterPage() {
         return;
       }
 
-      // Ensuite ajouter le passkey
-      const { data, error: passkeyError } = await authClient.passkey.addPasskey({
+      // Attendre un peu que la session soit établie
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Étape 2: Ajouter le passkey maintenant que l'utilisateur est connecté
+      const { error: passkeyError } = await authClient.passkey.addPasskey({
         name: `${name}'s Passkey`,
-        fetchOptions: {
-          onSuccess() {
-            router.push("/dashboard");
-          },
-          onError(context) {
-            setError(context.error.message || "Échec de l'enregistrement du passkey");
-            setIsLoading(false);
-          },
-        },
       });
 
       if (passkeyError) {
+        console.error("Passkey error:", passkeyError);
         setError(passkeyError.message || "Échec de l'enregistrement du passkey");
         setIsLoading(false);
+        return;
       }
+
+      // Succès! Redirection vers le dashboard
+      router.push("/dashboard");
     } catch (err) {
+      console.error("Registration error:", err);
       setError("Erreur: " + (err instanceof Error ? err.message : String(err)));
       setIsLoading(false);
       setStep("info");
