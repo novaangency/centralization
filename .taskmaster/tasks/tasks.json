@@ -87,8 +87,69 @@
         "dependencies": [
           "1"
         ],
-        "status": "pending",
-        "subtasks": []
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up BetterAuth dependencies and Prisma adapter",
+            "description": "Install BetterAuth dependencies and configure the Prisma adapter for user management",
+            "dependencies": [],
+            "details": "Install @better-auth/core, @better-auth/prisma-adapter, and related dependencies. Configure the Prisma adapter to work with the existing database schema. Set up the basic BetterAuth configuration file with WebAuthn provider.",
+            "status": "in-progress",
+            "testStrategy": "Verify that BetterAuth can connect to the database and create the necessary tables",
+            "updatedAt": "2025-11-27T18:43:26.911Z",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement WebAuthn passkey authentication",
+            "description": "Configure WebAuthn passkey authentication using BetterAuth",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement WebAuthn provider configuration in BetterAuth. Set up routes for passkey registration and authentication. Configure proper CORS settings and HTTPS requirements for WebAuthn. Implement the necessary API endpoints for passkey flows.",
+            "status": "pending",
+            "testStrategy": "Test passkey registration and authentication flows in browser with WebAuthn security requirements",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Implement secure session management",
+            "description": "Create user session management with proper security measures",
+            "dependencies": [
+              2
+            ],
+            "details": "Configure session handling in BetterAuth with secure cookies and proper expiration. Implement session validation middleware. Set up CSRF protection and secure session storage. Ensure sessions work properly with passkey authentication.",
+            "status": "pending",
+            "testStrategy": "Test session creation, validation, and expiration. Verify secure cookie handling and CSRF protection",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Build authentication API routes",
+            "description": "Create authentication routes and API endpoints for login/registration",
+            "dependencies": [
+              3
+            ],
+            "details": "Build Next.js API routes for user registration, login, and logout using BetterAuth. Implement proper error handling and validation. Create endpoints for checking authentication status and session validation. Ensure proper TypeScript types are in place.",
+            "status": "pending",
+            "testStrategy": "Test all authentication endpoints with valid and invalid credentials. Verify proper error responses",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Create frontend authentication components",
+            "description": "Create frontend authentication components and integrate with BetterAuth",
+            "dependencies": [
+              4
+            ],
+            "details": "Develop React components for login, registration, and passkey management. Integrate with BetterAuth client SDK. Implement proper state management for authentication status. Add loading states and error handling for better UX. Ensure components work with passkey flows.",
+            "status": "pending",
+            "testStrategy": "Test the complete authentication flow from frontend including passkey registration and login. Verify proper state updates and error handling",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2025-11-27T18:43:26.911Z"
       },
       {
         "id": "3",
@@ -200,7 +261,7 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-11-27T18:35:43.452Z",
+      "lastModified": "2025-11-27T18:43:26.913Z",
       "taskCount": 10,
       "completedCount": 1,
       "tags": [
