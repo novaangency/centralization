@@ -1,0 +1,83 @@
+📄 PRD – Webapp Freelance Management Tool
+🧠 Objectif produit
+
+Créer une webapp en Next.js permettant de centraliser toute la gestion d’une activité freelance : clients, projets, services, automatisations n8n, gestion d’équipe et tâches.
+But : avoir une vue 360° sur l’ensemble de l’activité pour gagner en efficacité, transparence, et contrôle.
+
+👥 Utilisateurs cibles
+
+Toi-même (fondateur)
+
+2 collaborateurs internes
+
+Gestion privée dans le MVP, mais pensée pour devenir publique plus tard (accès client, portail, etc.)
+
+💢 Problèmes adressés
+
+Outils dispersés (CRM, Trello, Notion, Docs…)
+
+Suivi difficile des projets, tâches, automatisations
+
+Perte d’informations client ou projets
+
+Pas de centralisation des JSON n8n ou historique d’automations
+
+🧩 Modules inclus dans le MVP
+Module	Description
+Dashboard	Vue d’ensemble : clients, projets en cours, tâches, automatisations récentes
+CRM	Gestion des clients, coordonnées, historique, projets liés
+Projets	Liste des projets, statut, deadlines, services associés
+Task Manager	Vue Kanban, assignation des tâches à l’équipe, priorités
+Automatisations n8n	Stockage de JSON (type JSONB), organisation par projet ou client
+Services	Fiches internes des prestations (site vitrine, mobile, automation, etc.)
+Team	3 utilisateurs max pour MVP, rôles : fondateur et admin
+🔐 Authentification & Sécurité
+Élément	Détail
+Authentification	Passkeys only via BetterAuth
+Rôles	Fondateur (admin total), Admin (accès complet sauf paramètres)
+Auth Adapter	Prisma Adapter (via BetterAuth)
+Sécurité	Auth WebAuthn, sessions sécurisées
+Accès	App privée (MVP) – future ouverture au public prévue
+🧱 Stack Technique
+Côté	Tech Stack
+Frontend	Next.js (App Router) + shadcn/ui (light only, minimaliste)
+Backend	NestJS (API modulaire REST ou GraphQL)
+DB	PostgreSQL (dans Docker)
+ORM	Prisma
+Auth	BetterAuth + Prisma Adapter
+Stockage JSON	Colonnes JSONB PostgreSQL
+🔄 Flows Utilisateur Clés (MVP)
+
+Créer un client → Lier à un projet → Ajouter des tâches → Assigner
+
+Créer un projet → Associer à client + services + automatisations
+
+Ajouter une automatisation n8n → Coller JSON → Lier à projet ou client
+
+Suivre un projet dans le dashboard
+
+Voir ses tâches depuis un panneau personnel
+
+Ajouter un service (catalogue interne)
+
+🧪 Roadmap MVP
+Phase	Fonctionnalité
+✅ Phase 1	Auth via Passkey / BetterAuth
+✅ Phase 2	CRUD Clients, Projets, Services
+✅ Phase 3	Task Manager + assignation
+✅ Phase 4	Intégration stockage JSON n8n
+✅ Phase 5	Vue Dashboard unifiée
+✅ Phase 6	Gestion des membres internes (admin / fondateur)
+📦 Données & Modèle (Extrait)
+
+Client : id, name, email, phone, company, projects[]
+
+Project : id, title, clientId, status, services[], automations[]
+
+Task : id, title, status, assigneeId, projectId, dueDate
+
+Automation : id, title, jsonBody, linkedToType, linkedToId
+
+Service : id, name, description, price, duration
+
+User : id, name, role, email, passkeyPublicKey

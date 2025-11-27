@@ -1,0 +1,142 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Project Structure",
+        "description": "Initialize the Next.js project with the required dependencies and folder structure.",
+        "details": "Use 'npx create-next-app' to create the Next.js app. Install necessary packages: shadcn/ui, Prisma, BetterAuth, and NestJS. Set up the folder structure for components, pages, and API routes.",
+        "testStrategy": "Verify that the project builds successfully and that the initial page renders without errors.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement Authentication with BetterAuth",
+        "description": "Integrate BetterAuth for user authentication using passkeys.",
+        "details": "Follow BetterAuth documentation to set up authentication. Use the Prisma Adapter for managing user sessions and roles. Ensure secure session handling with WebAuthn.",
+        "testStrategy": "Test user registration and login flows, ensuring that passkeys work correctly and sessions are secure.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Create Database Schema",
+        "description": "Define the PostgreSQL database schema using Prisma for clients, projects, tasks, automations, services, and users.",
+        "details": "Create a Prisma schema file with models for Client, Project, Task, Automation, Service, and User as per the PRD. Use JSONB for storing automation data.",
+        "testStrategy": "Run Prisma migrations and verify that the database tables are created correctly.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Develop CRUD Operations for Clients",
+        "description": "Implement Create, Read, Update, Delete operations for managing clients.",
+        "details": "Use NestJS to create a REST API for clients. Implement endpoints for adding, retrieving, updating, and deleting client records.",
+        "testStrategy": "Write unit tests for each endpoint to ensure they function correctly and handle edge cases.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Develop CRUD Operations for Projects",
+        "description": "Implement CRUD operations for managing projects linked to clients.",
+        "details": "Extend the NestJS API to include endpoints for projects. Ensure that projects can be associated with clients and services.",
+        "testStrategy": "Test the project endpoints with various scenarios, ensuring proper linking to clients.",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Task Manager Functionality",
+        "description": "Create a Kanban-style task manager for assigning and managing tasks.",
+        "details": "Develop a frontend component using Next.js to display tasks in a Kanban format. Integrate with the backend to fetch and update task statuses.",
+        "testStrategy": "Conduct user testing to ensure tasks can be created, assigned, and moved between statuses.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Integrate n8n Automation Storage",
+        "description": "Implement functionality to store and manage n8n automation JSON data.",
+        "details": "Create an API endpoint to accept JSON data for automations and link them to projects or clients. Store this data in the JSONB column of the database.",
+        "testStrategy": "Test the API with various JSON inputs to ensure data is stored and retrieved correctly.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Develop Dashboard Overview",
+        "description": "Create a dashboard to provide an overview of clients, ongoing projects, tasks, and recent automations.",
+        "details": "Use Next.js to build a dashboard component that aggregates data from clients, projects, tasks, and automations. Ensure it updates in real-time.",
+        "testStrategy": "Perform integration testing to ensure all data is displayed correctly and updates as expected.",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement User Role Management",
+        "description": "Set up user roles and permissions for the admin and founder.",
+        "details": "Implement role-based access control in the application, ensuring that the founder has full access while admins have limited permissions.",
+        "testStrategy": "Test role assignments and access restrictions to ensure proper functionality.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Finalize MVP and Documentation",
+        "description": "Prepare the application for MVP release, including documentation and user guides.",
+        "details": "Compile documentation for the API, user guides for the application, and prepare deployment instructions.",
+        "testStrategy": "Review documentation for clarity and completeness, and conduct a final walkthrough of the application.",
+        "priority": "low",
+        "dependencies": [
+          8,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-11-27T13:30:45.695Z",
+      "updated": "2025-11-27T13:30:45.695Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
