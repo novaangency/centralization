@@ -87,7 +87,7 @@
         "dependencies": [
           "1"
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -147,13 +147,13 @@
               4
             ],
             "details": "Develop React components for login, registration, and passkey management. Integrate with BetterAuth client SDK. Implement proper state management for authentication status. Add loading states and error handling for better UX. Ensure components work with passkey flows.",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "Test the complete authentication flow from frontend including passkey registration and login. Verify proper state updates and error handling",
             "parentId": "undefined",
-            "updatedAt": "2025-11-27T18:45:29.868Z"
+            "updatedAt": "2025-11-27T18:46:39.431Z"
           }
         ],
-        "updatedAt": "2025-11-27T18:45:29.868Z"
+        "updatedAt": "2025-11-27T18:46:39.431Z"
       },
       {
         "id": "3",
@@ -265,9 +265,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-11-27T18:45:29.868Z",
+      "lastModified": "2025-11-27T18:46:39.433Z",
       "taskCount": 10,
-      "completedCount": 1,
+      "completedCount": 2,
       "tags": [
         "master"
       ]
