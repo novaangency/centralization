@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { passkey } from "@better-auth/passkey";
 import prisma from "../db/prisma";
 
 export const auth = betterAuth({
@@ -9,6 +10,13 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  plugins: [
+    passkey({
+      rpID: process.env.NODE_ENV === "production" ? "yourdomain.com" : "localhost",
+      rpName: "Nova Centralization",
+      origin: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+    }),
+  ],
   // Configuration pour WebAuthn/Passkeys
   trustedOrigins: [process.env.BETTER_AUTH_URL || "http://localhost:3000"],
   session: {
