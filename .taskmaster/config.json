@@ -2,19 +2,19 @@
   "models": {
     "main": {
       "provider": "openrouter",
-      "modelId": "x-ai/grok-4.1-fast:free",
+      "modelId": "kwaipilot/kat-coder-pro:free",
       "maxTokens": 100000,
       "temperature": 0.2
     },
     "research": {
       "provider": "openrouter",
-      "modelId": "x-ai/grok-4.1-fast:free",
+      "modelId": "kwaipilot/kat-coder-pro:free",
       "maxTokens": 1000000,
       "temperature": 0.1
     },
     "fallback": {
       "provider": "openrouter",
-      "modelId": "x-ai/grok-4.1-fast:free",
+      "modelId": "kwaipilot/kat-coder-pro:free",
       "maxTokens": 120000,
       "temperature": 0.2
     }
