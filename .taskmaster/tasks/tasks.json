@@ -10,7 +10,61 @@
         "priority": "high",
         "dependencies": [],
         "status": "in-progress",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Next.js Application",
+            "description": "Use npx create-next-app to scaffold the Next.js application structure",
+            "dependencies": [],
+            "details": "Run 'npx create-next-app client-automation-app' to initialize the Next.js project with TypeScript support. Configure the project with appropriate settings for a modern web application.",
+            "status": "pending",
+            "testStrategy": "Verify that the Next.js development server starts and the initial page renders without errors"
+          },
+          {
+            "id": 2,
+            "title": "Install Required Dependencies",
+            "description": "Install and configure required packages for the application",
+            "dependencies": [
+              1
+            ],
+            "details": "Install the necessary dependencies: shadcn/ui for UI components, Prisma for database ORM, BetterAuth for authentication, and NestJS for the backend API. Configure package.json with appropriate versions and scripts.",
+            "status": "pending",
+            "testStrategy": "Check that all packages are properly installed and accessible in the project"
+          },
+          {
+            "id": 3,
+            "title": "Create Project Folder Structure",
+            "description": "Create the initial folder structure for organized development",
+            "dependencies": [
+              2
+            ],
+            "details": "Set up the folder structure with dedicated directories: /components for UI components, /pages for Next.js pages, /api for API routes, /lib for utility functions, /styles for CSS/styling, and /types for TypeScript interfaces. Ensure proper separation of concerns.",
+            "status": "pending",
+            "testStrategy": "Verify the folder structure exists and files can be created in each directory"
+          },
+          {
+            "id": 4,
+            "title": "Configure Development Tools",
+            "description": "Configure ESLint, Prettier, and TypeScript settings",
+            "dependencies": [
+              3
+            ],
+            "details": "Set up development tools including ESLint configuration for code quality, Prettier for code formatting, and TypeScript configuration. Create appropriate config files and ensure they work together seamlessly.",
+            "status": "pending",
+            "testStrategy": "Test that linting and formatting work correctly on sample code"
+          },
+          {
+            "id": 5,
+            "title": "Configure Environment Variables and Settings",
+            "description": "Set up environment variables and basic configuration",
+            "dependencies": [
+              4
+            ],
+            "details": "Create .env.local template with required environment variables, set up configuration files for database connection, authentication settings, and API endpoints. Ensure proper environment variable loading in both development and production.",
+            "status": "pending",
+            "testStrategy": "Verify that environment variables are properly loaded and accessible in the application"
+          }
+        ]
       },
       {
         "id": 2,
