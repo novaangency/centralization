@@ -1,8 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../db/prisma";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -11,8 +9,11 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  socialProviders: {
-    // Configuration future pour OAuth si nécessaire
+  // Configuration pour WebAuthn/Passkeys
+  trustedOrigins: [process.env.BETTER_AUTH_URL || "http://localhost:3000"],
+  session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 jours
+    updateAge: 60 * 60 * 24, // 1 jour
   },
 });
 
